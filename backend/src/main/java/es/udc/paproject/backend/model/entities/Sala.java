@@ -1,9 +1,11 @@
 package es.udc.paproject.backend.model.entities;
 
+import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+@Entity
 public class Sala {
     private Long id;
     private String nombre;
