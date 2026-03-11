@@ -27,11 +27,12 @@ public class Sesion {
     public Sesion() {
     }
 
-    public Sesion(Sala sala, Pelicula pelicula, LocalDateTime fechaHora, BigDecimal precio) {
+    public Sesion(Sala sala, Pelicula pelicula, LocalDateTime fechaHora, BigDecimal precio, Integer localidadesLibres) {
         this.sala = sala;
         this.pelicula = pelicula;
         this.fechaHora = fechaHora;
         this.precio = precio;
+        this.localidadesLibres = localidadesLibres;
     }
 
     // ===== Getters =====
@@ -56,6 +57,27 @@ public class Sesion {
     }
 
     public Integer getLocalidadesLibres() {return localidadesLibres;}
+
+    // ===== Setters =====
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public void setSala(Sala sala) {
+        this.sala = sala;
+    }
+    public void setPelicula(Pelicula pelicula) {
+        this.pelicula = pelicula;
+    }
+    public void setFechaHora(LocalDateTime fechaHora) {
+        this.fechaHora = fechaHora;
+    }
+    public void setPrecio(BigDecimal precio) {
+        this.precio = precio;
+    }
+    public void setLocalidadesLibres(Integer localidadesLibres) {
+        this.localidadesLibres = localidadesLibres;
+    }
+
 
     // ===== Lógica de dominio =====
     public int getEntradasDisponibles() {

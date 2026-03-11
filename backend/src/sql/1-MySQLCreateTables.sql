@@ -45,6 +45,7 @@ CREATE TABLE Sesion (
     pelicula_id BIGINT NOT NULL,
     fechaHora DATETIME NOT NULL,
     precio DECIMAL(11, 2) NOT NULL,
+    localidadesLibres BIGINT NOT NULL,
     CONSTRAINT SesionPK PRIMARY KEY (id),
     CONSTRAINT SesionSalaIdFK FOREIGN KEY (sala_id) REFERENCES Sala(id),
     CONSTRAINT SesionPeliculaIdFK FOREIGN KEY (pelicula_id) REFERENCES Pelicula(id)
