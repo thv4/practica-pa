@@ -21,6 +21,8 @@ public class Sesion {
     private LocalDateTime fechaHora;
     private BigDecimal precio;
 
+    private Integer localidadesLibres;
+
     /* Constructor vacío obligatorio para JPA */
     public Sesion() {
     }
@@ -52,6 +54,8 @@ public class Sesion {
     public BigDecimal getPrecio() {
         return precio;
     }
+
+    public Integer getLocalidadesLibres() {return localidadesLibres;}
 
     // ===== Lógica de dominio =====
     public int getEntradasDisponibles() {
