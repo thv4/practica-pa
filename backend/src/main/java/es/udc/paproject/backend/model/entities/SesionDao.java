@@ -29,4 +29,7 @@ public interface SesionDao extends JpaRepository<Sesion, Long> {
             LocalDateTime inicio,
             LocalDateTime fin
     );
+
+    List<Sesion> findByFechaHoraBetweenOrderByPeliculaTituloAscFechaHoraAsc(
+            LocalDateTime inicio, LocalDateTime fin);
 }
