@@ -58,7 +58,7 @@ public class CompraServiceImpl implements CompraService {
 
         return compra;
     }
-/*
+
     @Override
     public Slice<Compra> findHistoricoCompras(Long usuarioId, int page, int size) throws InstanceNotFoundException {
 
@@ -68,7 +68,7 @@ public class CompraServiceImpl implements CompraService {
 
         return compraDao.findByUser_IdOrderByFechaRegistroCompraDesc(usuarioId,pageable);
     }
-*/
+
 
     @Override
     public void entregarEntradas(Long compraId, String tarjetaBancaria)

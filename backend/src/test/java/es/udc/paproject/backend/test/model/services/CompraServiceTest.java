@@ -153,9 +153,9 @@ public class CompraServiceTest {
 
         assertThrows(SesionExpiredException.class,() -> compraService.comprarEntradas(expiredId,userId,numEntradas,tarjeta));
     }
-/*
+
     @Test
-    public void testFindHistoricoCompras() throws InstanceNotFoundException {
+    public void testFindHistoricoComprasValido() throws InstanceNotFoundException {
 
         User user = signUpUser("user");
 
@@ -190,7 +190,7 @@ public class CompraServiceTest {
         Slice<Compra> pag3 = compraService.findHistoricoCompras(user.getId(), 2,2);
         assertFalse(pag3.hasNext());
     }
-*/
+
 
     @Test
     public void testEntregarEntradasExito() throws Exception {

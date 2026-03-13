@@ -21,7 +21,7 @@ public interface CompraService {
      */
     public Compra comprarEntradas(Long sesionId, Long usuarioId, int n, String tarjeta) throws InstanceNotFoundException,MaxLocalidadesExceedException, SesionExpiredException;
 
-    /*
+
     /**
      * Devuelve todas las compras del usuario
      * @param usuarioId Identificador del usuario
@@ -29,7 +29,7 @@ public interface CompraService {
      * @param size Tamaño de la página del Pageable
      * @throws InstanceNotFoundException si no existe el usuario
      */
- //  public Slice<Compra> findHistoricoCompras(Long usuarioId, int page, int size) throws InstanceNotFoundException;
+   public Slice<Compra> findHistoricoCompras(Long usuarioId, int page, int size) throws InstanceNotFoundException;
 
 
     /**
