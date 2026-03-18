@@ -38,7 +38,6 @@ CREATE TABLE Sala (
 ) ENGINE=InnoDB;
 
 -- 3. Tabla Sesion
--- Nota: Sesion usa anotaciones en campos, por defecto busca nombres de columnas igual que los atributos
 CREATE TABLE Sesion (
     id BIGINT NOT NULL AUTO_INCREMENT,
     sala_id BIGINT NOT NULL,
@@ -52,7 +51,6 @@ CREATE TABLE Sesion (
 ) ENGINE=InnoDB;
 
 -- 4. Tabla Compra
--- Nota: Aquí tus compañeros especificaron @JoinColumn(name = "userId") y "sesionId"
 CREATE TABLE Compra (
     compraId BIGINT NOT NULL AUTO_INCREMENT,
     userId BIGINT NOT NULL,
@@ -60,7 +58,7 @@ CREATE TABLE Compra (
     fechaRegistroCompra DATETIME NOT NULL,
     numLocalidades INT NOT NULL,
     tarjetaBancaria VARCHAR(16) NOT NULL,
-    entregada TINYINT(1) NOT NULL, -- boolean en MySQL es TINYINT
+    entregada TINYINT(1) NOT NULL,
     CONSTRAINT CompraPK PRIMARY KEY (compraId),
     CONSTRAINT CompraUserIdFK FOREIGN KEY (userId) REFERENCES User(id),
     CONSTRAINT CompraSesionIdFK FOREIGN KEY (sesionId) REFERENCES Sesion(id)
