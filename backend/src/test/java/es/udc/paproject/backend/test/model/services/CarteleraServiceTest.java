@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import es.udc.paproject.backend.model.entities.*;
+import es.udc.paproject.backend.model.exceptions.InvalidPost6DaysDateException;
 import es.udc.paproject.backend.model.exceptions.PastDateException;
 import es.udc.paproject.backend.model.services.CarteleraService;
 import org.junit.jupiter.api.Test;
@@ -44,7 +45,14 @@ public class CarteleraServiceTest {
     }
 
     @Test
-    public void testGetCarteleraCorrecta() throws PastDateException {
+    public void testInvalidCreateSesionPost6Days(){
+        LocalDateTime post = LocalDateTime.now().plusDays(10);
+
+        assertThrows(InvalidPost6DaysDateException.class, () -> carteleraService.getCartelera(post));
+    }
+
+    @Test
+    public void testGetCarteleraCorrecta() throws PastDateException,InvalidPost6DaysDateException {
 
         LocalDateTime mañana = LocalDateTime.now().plusDays(1);
 
@@ -53,7 +61,7 @@ public class CarteleraServiceTest {
     }
 
     @Test
-    public void testGetCarteleraVerificarOrdenCompleto() throws PastDateException {
+    public void testGetCarteleraVerificarOrdenCompleto() throws PastDateException,InvalidPost6DaysDateException {
         // Setup: Películas con títulos que dictan el orden (A, B)
         Pelicula peliB = new Pelicula("Batman", "El caballero oscuro", 140);
         Pelicula peliA = new Pelicula("Avatar", "Gente azul", 160);

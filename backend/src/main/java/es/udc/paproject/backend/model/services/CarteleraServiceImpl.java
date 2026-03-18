@@ -3,6 +3,7 @@ package es.udc.paproject.backend.model.services;
 import es.udc.paproject.backend.model.entities.Pelicula;
 import es.udc.paproject.backend.model.entities.Sesion;
 import es.udc.paproject.backend.model.entities.SesionDao;
+import es.udc.paproject.backend.model.exceptions.InvalidPost6DaysDateException;
 import es.udc.paproject.backend.model.exceptions.PastDateException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,13 +24,17 @@ public class CarteleraServiceImpl implements CarteleraService {
     private SesionDao sesionDao;
 
     @Override
-    public Map<Pelicula, List<Sesion>> getCartelera(LocalDateTime diaElegido) throws PastDateException {
+    public Map<Pelicula, List<Sesion>> getCartelera(LocalDateTime diaElegido) throws PastDateException, InvalidPost6DaysDateException {
 
         LocalDateTime ahora = LocalDateTime.now();
 
         // Comprobamos si el día es anterior a hoy
         if (diaElegido.toLocalDate().isBefore(ahora.toLocalDate())) {
             throw new PastDateException(diaElegido.toString());
+        }
+        LocalDateTime fechaLimite = ahora.toLocalDate().plusDays(6).atStartOfDay();
+        if(diaElegido.isAfter(fechaLimite)){
+            throw new InvalidPost6DaysDateException();
         }
 
         LocalDateTime inicio;
