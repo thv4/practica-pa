@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class User {
 	
-	public enum RoleType {USER};
+	public enum RoleType {ESPECTADOR, TAQUILLERO};
 
 	private Long id;
 	private String userName;
