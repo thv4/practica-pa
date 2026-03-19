@@ -2,6 +2,7 @@ package es.udc.paproject.backend.rest.controllers;
 
 import es.udc.paproject.backend.model.entities.Pelicula;
 import es.udc.paproject.backend.model.entities.Sesion;
+import es.udc.paproject.backend.model.exceptions.InvalidPost6DaysDateException;
 import es.udc.paproject.backend.model.exceptions.PastDateException;
 import es.udc.paproject.backend.model.services.CarteleraService;
 import es.udc.paproject.backend.rest.dtos.CarteleraItemDto;
@@ -18,6 +19,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static es.udc.paproject.backend.rest.dtos.PeliculaConversor.toPeliculaDto;
+import static es.udc.paproject.backend.rest.dtos.SesionConversor.toSesionDto;
 
 @RestController
 @RequestMapping("/carteleras")
@@ -29,7 +31,7 @@ public class CarteleraController {
     @GetMapping("/cartelera")
     public List<CarteleraItemDto> getCartelera(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fecha)
-            throws PastDateException {
+            throws PastDateException, InvalidPost6DaysDateException {
 
         // 1. Llamamos al servicio
         Map<Pelicula, List<Sesion>> mapaCartelera = carteleraService.getCartelera(fecha);
