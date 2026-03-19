@@ -81,7 +81,7 @@ public class Sesion {
 
     // ===== Lógica de dominio =====
     public int getEntradasDisponibles() {
-        return sala.getCapacidad();
+        return this.localidadesLibres;
     }
 
     public boolean haComenzado() {

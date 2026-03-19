@@ -1,5 +1,7 @@
 package es.udc.paproject.backend.rest.dtos;
 
+import java.util.List;
+
 public class CarteleraItemDto {
     private PeliculaDto pelicula;
     private List<SesionDto> sesiones;
