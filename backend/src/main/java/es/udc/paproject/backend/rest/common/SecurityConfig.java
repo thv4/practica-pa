@@ -19,7 +19,7 @@ import java.util.Arrays;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	@Autowired
 	private JwtGenerator jwtGenerator;
 
@@ -27,36 +27,60 @@ public class SecurityConfig {
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
 		http.cors(Customizer.withDefaults())
-			.csrf((csrf) -> csrf.disable())
-			.sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-			.addFilterBefore(new JwtFilter(jwtGenerator), UsernamePasswordAuthenticationFilter.class)
-			.authorizeHttpRequests((authorize) -> authorize
-				.requestMatchers(HttpMethod.POST, "/users/signUp").permitAll()
-				.requestMatchers(HttpMethod.POST, "/users/login").permitAll()
-				.requestMatchers(HttpMethod.POST, "/users/loginFromServiceToken").permitAll()
-				.requestMatchers(HttpMethod.PUT, "/users/*").hasRole("USER")
-				.requestMatchers(HttpMethod.POST, "/users/*/changePassword").hasRole("USER")
-				.anyRequest().denyAll());
+				.csrf((csrf) -> csrf.disable())
+				.sessionManagement((sessionManagement) -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.addFilterBefore(new JwtFilter(jwtGenerator), UsernamePasswordAuthenticationFilter.class)
+				.authorizeHttpRequests((authorize) -> authorize
+						// ===== Endpoints públicos (sin autenticación) =====
+						.requestMatchers(HttpMethod.POST, "/users/signUp").permitAll()
+						.requestMatchers(HttpMethod.POST, "/users/login").permitAll()
+						.requestMatchers(HttpMethod.POST, "/users/loginFromServiceToken").permitAll()
+
+						// ===== FUNC-1: Cartelera (pública) =====
+						.requestMatchers(HttpMethod.GET, "/cartelera/**").permitAll()
+
+						// ===== FUNC-2: Detalle película (público) =====
+						.requestMatchers(HttpMethod.GET, "/pelicula/**").permitAll()
+
+						// ===== FUNC-3: Detalle sesión (público) =====
+						.requestMatchers(HttpMethod.GET, "/sesion/**").permitAll()
+
+						// ===== FUNC-4: Comprar entradas (solo VIEWER) =====
+						.requestMatchers(HttpMethod.POST, "/compras/**/buy").hasRole("VIEWER")
+
+						// ===== FUNC-5: Histórico de compras (solo VIEWER) =====
+						.requestMatchers(HttpMethod.GET, "/compras").hasRole("VIEWER")
+
+						// ===== FUNC-6: Entregar entradas (solo TICKET_SELLER) =====
+						.requestMatchers(HttpMethod.POST, "/entregas/entregar").hasRole("TICKET_SELLER")
+
+						// ===== Perfil y contraseña (ambos roles) =====
+						.requestMatchers(HttpMethod.PUT, "/users/*").hasAnyRole("VIEWER", "TICKET_SELLER")
+						.requestMatchers(HttpMethod.POST, "/users/*/changePassword").hasAnyRole("VIEWER", "TICKET_SELLER")
+
+						// ===== Cualquier otra petición, denegada =====
+						.anyRequest().denyAll()
+				);
 
 		return http.build();
 
 	}
-	
+
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
-		
+
 		CorsConfiguration config = new CorsConfiguration();
-	    UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-		
+		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+
 		config.setAllowCredentials(true);
-	    config.setAllowedOriginPatterns(Arrays.asList("*"));
-	    config.addAllowedHeader("*");
-	    config.addAllowedMethod("*");
-	    
-	    source.registerCorsConfiguration("/**", config);
-	    
-	    return source;
-	    
-	 }
+		config.setAllowedOriginPatterns(Arrays.asList("*"));
+		config.addAllowedHeader("*");
+		config.addAllowedMethod("*");
+
+		source.registerCorsConfiguration("/**", config);
+
+		return source;
+
+	}
 
 }
