@@ -86,7 +86,7 @@ public class CompraServiceTest {
 
     private User crearUsuarioPrueba() {
         User user = new User("testviewer", "password", "Nombre", "Apellidos", "email@test.com");
-        user.setRole(RoleType.USER);
+        user.setRole(RoleType.ESPECTADOR);
         userDao.save(user);
         return user;
     }
@@ -132,9 +132,12 @@ public class CompraServiceTest {
         Sesion sesion = sesionDao.save(new Sesion(sala,pelicula,LocalDateTime.now().plusDays(3),precio,10));
         Long sesionId = sesion.getId();
         String tarjeta = "1234567890123456";
-        int numEntradas = 5;
 
-        assertThrows(MaxLocalidadesExceedException.class,() -> compraService.comprarEntradas(sesionId,userId,17,tarjeta));
+        compraService.comprarEntradas(sesionId, userId, 5, tarjeta);
+
+        assertThrows(MaxLocalidadesExceedException.class, () ->
+                compraService.comprarEntradas(sesionId, userId, 6, tarjeta)
+        );
 
 
     }
