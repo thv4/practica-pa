@@ -1,0 +1,1 @@
+Merge remote-tracking branch 'origin/master'   --->   [VARIOS] Merge para resolución de conflictos
