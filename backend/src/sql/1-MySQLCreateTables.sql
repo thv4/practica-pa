@@ -59,7 +59,7 @@ CREATE TABLE Compra (
     numLocalidades INT NOT NULL,
     tarjetaBancaria VARCHAR(16) NOT NULL,
     entregada TINYINT(1) NOT NULL,
-    version BIGINT NOT NULL,
+    version BIGINT ,
     CONSTRAINT CompraPK PRIMARY KEY (compraId),
     CONSTRAINT CompraUserIdFK FOREIGN KEY (userId) REFERENCES User(id),
     CONSTRAINT CompraSesionIdFK FOREIGN KEY (sesionId) REFERENCES Sesion(id)
