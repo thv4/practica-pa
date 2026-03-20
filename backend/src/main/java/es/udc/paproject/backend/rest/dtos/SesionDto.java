@@ -18,7 +18,6 @@ public class SesionDto {
 
     private BigDecimal precio;
     private Integer localidadesDisponibles;
-    private Boolean puedeComprar;
 
     public SesionDto() {}
 
@@ -26,7 +25,7 @@ public class SesionDto {
     public SesionDto(Long id, String tituloPelicula, String resumenPelicula,
                      Integer duracionPelicula, String nombreSala, Integer capacidadSala,
                      LocalDateTime fechaHora, BigDecimal precio,
-                     Integer localidadesDisponibles, Boolean puedeComprar) {
+                     Integer localidadesDisponibles) {
         this.id = id;
         this.tituloPelicula = tituloPelicula;
         this.resumenPelicula = resumenPelicula;
@@ -36,7 +35,6 @@ public class SesionDto {
         this.fechaHora = fechaHora;
         this.precio = precio;
         this.localidadesDisponibles = localidadesDisponibles;
-        this.puedeComprar = puedeComprar;
     }
 
     public Long getId() {
@@ -109,13 +107,5 @@ public class SesionDto {
 
     public void setLocalidadesDisponibles(Integer localidadesDisponibles) {
         this.localidadesDisponibles = localidadesDisponibles;
-    }
-
-    public Boolean getPuedeComprar() {
-        return puedeComprar;
-    }
-
-    public void setPuedeComprar(Boolean puedeComprar) {
-        this.puedeComprar = puedeComprar;
     }
 }

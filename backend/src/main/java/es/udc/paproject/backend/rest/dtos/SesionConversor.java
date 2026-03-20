@@ -10,7 +10,7 @@ public class SesionConversor {
 
     private SesionConversor() {}
 
-    public final static SesionDto toSesionDto(Sesion sesion, Boolean usuarioAutenticado) {
+    public final static SesionDto toSesionDto(Sesion sesion) {
 
         SesionDto dto = new SesionDto();
 
@@ -26,24 +26,12 @@ public class SesionConversor {
         dto.setNombreSala(sesion.getSala().getNombre());
         dto.setCapacidadSala(sesion.getSala().getCapacidad());
 
-        boolean puedeComprar = usuarioAutenticado &&
-                !sesion.haComenzado() &&
-                sesion.getLocalidadesLibres() > 0;
-        dto.setPuedeComprar(puedeComprar);
-
         return dto;
     }
 
-    public final static List<SesionDto> toSesionDto(List<Sesion> sesiones, Boolean usuarioAutenticado) {
-        return sesiones.stream()
-                .map(s -> toSesionDto(s, usuarioAutenticado))
-                .collect(Collectors.toList());
-    }
-
-    // Versión sin autenticación
     public final static List<SesionDto> toSesionDto(List<Sesion> sesiones) {
         return sesiones.stream()
-                .map(s -> toSesionDto(s, false))
+                .map(SesionConversor::toSesionDto)
                 .collect(Collectors.toList());
     }
 }

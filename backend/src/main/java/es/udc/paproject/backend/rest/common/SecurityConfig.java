@@ -37,7 +37,7 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.POST, "/users/loginFromServiceToken").permitAll()
 
 						// ===== FUNC-1: Cartelera (pública) =====
-						.requestMatchers(HttpMethod.GET, "/cartelera/**").permitAll()
+						.requestMatchers(HttpMethod.GET, "/carteleras/**").permitAll()
 
 						// ===== FUNC-2: Detalle película (público) =====
 						.requestMatchers(HttpMethod.GET, "/pelicula/**").permitAll()
@@ -46,17 +46,18 @@ public class SecurityConfig {
 						.requestMatchers(HttpMethod.GET, "/sesion/**").permitAll()
 
 						// ===== FUNC-4: Comprar entradas (solo VIEWER) =====
-						.requestMatchers(HttpMethod.POST, "/compras/**/buy").hasRole("VIEWER")
+						.requestMatchers(HttpMethod.POST, "/compras/**").hasRole("ESPECTADOR")
 
 						// ===== FUNC-5: Histórico de compras (solo VIEWER) =====
-						.requestMatchers(HttpMethod.GET, "/compras").hasRole("VIEWER")
+						.requestMatchers(HttpMethod.GET, "/compras/compras").hasRole("ESPECTADOR")
 
 						// ===== FUNC-6: Entregar entradas (solo TICKET_SELLER) =====
-						.requestMatchers(HttpMethod.POST, "/entregas/entregar").hasRole("TICKET_SELLER")
+						.requestMatchers(HttpMethod.POST, "/entregas/entregar").hasRole("TAQUILLERO")
 
 						// ===== Perfil y contraseña (ambos roles) =====
-						.requestMatchers(HttpMethod.PUT, "/users/*").hasAnyRole("VIEWER", "TICKET_SELLER")
-						.requestMatchers(HttpMethod.POST, "/users/*/changePassword").hasAnyRole("VIEWER", "TICKET_SELLER")
+						.requestMatchers(HttpMethod.PUT, "/users/*").hasAnyRole("ESPECTADOR", "TAQUILLERO")
+						.requestMatchers(HttpMethod.POST, "/users/*/changePassword").hasAnyRole("ESPECTADOR", "TAQUILLERO")
+						.requestMatchers("/error").permitAll()
 
 						// ===== Cualquier otra petición, denegada =====
 						.anyRequest().denyAll()

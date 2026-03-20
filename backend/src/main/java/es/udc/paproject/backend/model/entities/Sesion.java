@@ -89,6 +89,6 @@ public class Sesion {
     }
 
     public boolean hayDisponibilidad(int numeroEntradas) {
-        return numeroEntradas > 0 && numeroEntradas <= getEntradasDisponibles();
+        return numeroEntradas > 0 && numeroEntradas <= 10 && numeroEntradas <= getEntradasDisponibles();
     }
 }
