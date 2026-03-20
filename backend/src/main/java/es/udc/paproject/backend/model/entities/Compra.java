@@ -18,6 +18,8 @@ public class Compra {
     private String tarjetaBancaria;
     private boolean entregada;
 
+    private Long version;
+
     @Transient
     private BigDecimal precioTotalCalculado(){
         return sesion.getPrecio().multiply(BigDecimal.valueOf(getNumLocalidades()));
@@ -82,5 +84,11 @@ public class Compra {
     public void setEntregada(boolean entr){
         this.entregada = entr;
     }
+
+    @Version
+    public Long getVersion(){
+        return version;
+    }
+    public void setVersion(Long version){this.version = version;}
 
 }
