@@ -1,17 +1,15 @@
 package es.udc.paproject.backend.rest.dtos;
 
-import es.udc.paproject.backend.model.entities.CompraDao;
 import es.udc.paproject.backend.model.entities.Sesion;
-import es.udc.paproject.backend.model.entities.User;
 
 import java.time.LocalDateTime;
 
 public class CompraDto {
 
     private Long compraId;
-    private User user;
+    private UserDto user;
+    private SesionDto sesion;
 
-    private Sesion sesion;
     private LocalDateTime fechaRegistroCompra;
     private int numLocalidades;
     private String tarjetaBancaria;
@@ -19,7 +17,7 @@ public class CompraDto {
 
     public CompraDto(){}
 
-    public CompraDto(Long compraId,User user, Sesion sesion, LocalDateTime fechaRegistroCompra, int numLocalidades, String tarjetaBancaria, boolean entregada){
+    public CompraDto(Long compraId, UserDto user, SesionDto sesion, LocalDateTime fechaRegistroCompra, int numLocalidades, String tarjetaBancaria, boolean entregada){
         this.compraId = compraId;
         this.user = user;
         this.sesion = sesion;
@@ -27,7 +25,6 @@ public class CompraDto {
         this.numLocalidades = numLocalidades;
         this.tarjetaBancaria = tarjetaBancaria;
         this.entregada = entregada;
-
     }
 
     public Long getCompraId() {
@@ -38,19 +35,19 @@ public class CompraDto {
         this.compraId = compraId;
     }
 
-    public User getUser() {
+    public UserDto getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDto user) {
         this.user = user;
     }
 
-    public Sesion getSesion() {
+    public SesionDto getSesion() {
         return sesion;
     }
 
-    public void setSesion(Sesion sesion) {
+    public void setSesion(SesionDto sesion) {
         this.sesion = sesion;
     }
 

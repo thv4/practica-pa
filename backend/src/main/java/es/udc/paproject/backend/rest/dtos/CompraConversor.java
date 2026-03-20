@@ -10,7 +10,15 @@ public class CompraConversor {
     private CompraConversor(){}
 
     public final static CompraDto toCompraDto(Compra compra){
-        return new CompraDto(compra.getCompraId(),compra.getUser(),compra.getSesion(),compra.getFechaRegistroCompra(), compra.getNumLocalidades(), compra.getTarjetaBancaria(),compra.getEntregada());
+        return new CompraDto(
+                compra.getCompraId(),
+                UserConversor.toUserDto(compra.getUser()),
+                SesionConversor.toSesionDto(compra.getSesion()),
+                compra.getFechaRegistroCompra(),
+                compra.getNumLocalidades(),
+                compra.getTarjetaBancaria(),
+                compra.getEntregada()
+        );
     }
 
     public final static List<CompraDto> toCompraDtos(List<Compra> compras){
