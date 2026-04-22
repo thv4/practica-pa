@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,30 +26,26 @@ public class CarteleraServiceImpl implements CarteleraService {
     private SesionDao sesionDao;
 
     @Override
-    public Map<Pelicula, List<Sesion>> getCartelera(LocalDateTime diaElegido) throws PastDateException, InvalidPost6DaysDateException {
+    public Map<Pelicula, List<Sesion>> getCartelera(LocalDate diaElegido) throws PastDateException, InvalidPost6DaysDateException {
 
+        LocalDate hoy = LocalDate.now();
         LocalDateTime ahora = LocalDateTime.now();
 
-        // Comprobamos si el día es anterior a hoy
-        if (diaElegido.toLocalDate().isBefore(ahora.toLocalDate())) {
+        if (diaElegido.isBefore(hoy)) {
             throw new PastDateException(diaElegido.toString());
         }
-        LocalDateTime fechaLimite = ahora.toLocalDate().plusDays(6).atStartOfDay();
-        if(diaElegido.isAfter(fechaLimite)){
+
+        if (diaElegido.isAfter(hoy.plusDays(6))) {
             throw new InvalidPost6DaysDateException();
         }
-
         LocalDateTime inicio;
-        if (diaElegido.toLocalDate().equals(ahora.toLocalDate())) {
+        if (diaElegido.equals(hoy)) {
             inicio = ahora;
         } else {
-            inicio = diaElegido.toLocalDate().atStartOfDay();
+            inicio = diaElegido.atStartOfDay();
         }
-
-        LocalDateTime fin = diaElegido.toLocalDate().atTime(23, 59, 59);
-
+        LocalDateTime fin = diaElegido.atTime(LocalTime.MAX);
         List<Sesion> sesiones = sesionDao.findByFechaHoraBetweenOrderByPeliculaTituloAscFechaHoraAsc(inicio, fin);
-
         return sesiones.stream()
                 .collect(Collectors.groupingBy(
                         Sesion::getPelicula,

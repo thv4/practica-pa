@@ -13,14 +13,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static es.udc.paproject.backend.rest.dtos.PeliculaConversor.toPeliculaDto;
-import static es.udc.paproject.backend.rest.dtos.SesionConversor.toSesionDto;
+import static es.udc.paproject.backend.rest.dtos.PeliculaResumenConversor.toPeliculaResumenDto;
+import static es.udc.paproject.backend.rest.dtos.SesionResumenConversor.toSesionResumenDto;
 
 @RestController
 @RequestMapping("/carteleras")
@@ -57,7 +57,7 @@ public class CarteleraController {
 
     @GetMapping("/cartelera")
     public List<CarteleraItemDto> getCartelera(
-            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime fecha)
+            @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fecha)
             throws PastDateException, InvalidPost6DaysDateException {
 
         // 1. Llamamos al servicio
@@ -66,8 +66,8 @@ public class CarteleraController {
         // 2. Convertimos el Mapa a una Lista de DTOs manteniendo el orden
         return mapaCartelera.entrySet().stream()
                 .map(entry -> new CarteleraItemDto(
-                        toPeliculaDto(entry.getKey()),
-                        toSesionDto(entry.getValue())
+                        toPeliculaResumenDto(entry.getKey()),
+                        toSesionResumenDto(entry.getValue())
                 ))
                 .collect(Collectors.toList());
     }

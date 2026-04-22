@@ -1,6 +1,7 @@
 package es.udc.paproject.backend.test.model.services;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +38,7 @@ public class CarteleraServiceTest {
 
     @Test
     public void testGetCarteleraFechaPasadaLanzaExcepcion() {
-        LocalDateTime ayer = LocalDateTime.now().minusDays(1);
+        LocalDate ayer = LocalDate.now().minusDays(1);
 
         assertThrows(PastDateException.class, () -> {
             carteleraService.getCartelera(ayer);
@@ -46,7 +47,7 @@ public class CarteleraServiceTest {
 
     @Test
     public void testInvalidCreateSesionPost6Days(){
-        LocalDateTime post = LocalDateTime.now().plusDays(10);
+        LocalDate post = LocalDate.now().plusDays(10);
 
         assertThrows(InvalidPost6DaysDateException.class, () -> carteleraService.getCartelera(post));
     }
@@ -54,15 +55,14 @@ public class CarteleraServiceTest {
     @Test
     public void testGetCarteleraCorrecta() throws PastDateException,InvalidPost6DaysDateException {
 
-        LocalDateTime mañana = LocalDateTime.now().plusDays(1);
+        LocalDate mañana = LocalDate.now().plusDays(1);
 
         Map<Pelicula, List<Sesion>> cartelera = carteleraService.getCartelera(mañana);
         assertTrue(cartelera != null);
     }
 
     @Test
-    public void testGetCarteleraVerificarOrdenCompleto() throws PastDateException,InvalidPost6DaysDateException {
-        // Setup: Películas con títulos que dictan el orden (A, B)
+    public void testGetCarteleraVerificarOrdenCompleto() throws PastDateException, InvalidPost6DaysDateException {
         Pelicula peliB = new Pelicula("Batman", "El caballero oscuro", 140);
         Pelicula peliA = new Pelicula("Avatar", "Gente azul", 160);
         peliculaDao.save(peliB);
@@ -71,27 +71,24 @@ public class CarteleraServiceTest {
         Sala sala = new Sala("Sala 1", 100);
         salaDao.save(sala);
 
-        LocalDateTime mañana = LocalDateTime.now().plusDays(1).withHour(10).withMinute(0);
+        LocalDate diaBusqueda = LocalDate.now().plusDays(1);
+        LocalDateTime fechaSesiones = diaBusqueda.atStartOfDay();
         BigDecimal precio = new BigDecimal("9.00");
 
-        // Setup: Sesiones desordenadas cronológicamente para la misma película
-        Sesion sTarde = new Sesion(sala, peliA, mañana.withHour(22), precio, 100);
-        Sesion sMañana = new Sesion(sala, peliA, mañana.withHour(15), precio, 100);
-        Sesion sBatman = new Sesion(sala, peliB, mañana.withHour(12), precio, 100);
+        Sesion sTarde = new Sesion(sala, peliA, fechaSesiones.withHour(22), precio, 100);
+        Sesion sMañana = new Sesion(sala, peliA, fechaSesiones.withHour(15), precio, 100);
+        Sesion sBatman = new Sesion(sala, peliB, fechaSesiones.withHour(12), precio, 100);
 
         sesionDao.save(sTarde);
         sesionDao.save(sMañana);
         sesionDao.save(sBatman);
+        Map<Pelicula, List<Sesion>> cartelera = carteleraService.getCartelera(diaBusqueda);
 
-        Map<Pelicula, List<Sesion>> cartelera = carteleraService.getCartelera(mañana);
-
-        // VERIFICACIÓN DE ORDEN ALFABÉTICO (Keys)
         List<Pelicula> pelisEnOrden = new ArrayList<>(cartelera.keySet());
 
         assertEquals("Avatar", pelisEnOrden.get(0).getTitulo(), "La primera debe ser Avatar (A)");
         assertEquals("Batman", pelisEnOrden.get(1).getTitulo(), "La segunda debe ser Batman (B)");
 
-        // VERIFICACIÓN DE ORDEN CRONOLÓGICO (Values)
         List<Sesion> sesionesAvatar = cartelera.get(peliA);
 
         assertEquals(15, sesionesAvatar.get(0).getFechaHora().getHour(), "La sesión de las 15h debe ir primero");
