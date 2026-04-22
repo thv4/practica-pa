@@ -23,6 +23,8 @@ public class Sesion {
 
     private Integer localidadesLibres;
 
+    private Long version;
+
     /* Constructor vacío obligatorio para JPA */
     public Sesion() {
     }
@@ -78,6 +80,11 @@ public class Sesion {
         this.localidadesLibres = localidadesLibres;
     }
 
+    @Version
+    public Long getVersion(){
+        return version;
+    }
+    public void setVersion(Long version){this.version = version;}
 
     // ===== Lógica de dominio =====
     public int getEntradasDisponibles() {
