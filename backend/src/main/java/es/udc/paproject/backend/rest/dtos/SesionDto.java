@@ -7,11 +7,10 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class SesionDto {
 
     private Long id;
+    private Long idPelicula;
     private String tituloPelicula;
-    private String resumenPelicula;
     private Integer duracionPelicula;
     private String nombreSala;
-    private Integer capacidadSala;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime fechaHora;
@@ -21,17 +20,15 @@ public class SesionDto {
 
     public SesionDto() {}
 
-    //por si necesita en test
-    public SesionDto(Long id, String tituloPelicula, String resumenPelicula,
-                     Integer duracionPelicula, String nombreSala, Integer capacidadSala,
+    public SesionDto(Long id, Long idPelicula, String tituloPelicula,
+                     Integer duracionPelicula, String nombreSala,
                      LocalDateTime fechaHora, BigDecimal precio,
                      Integer localidadesDisponibles) {
         this.id = id;
+        this.idPelicula = idPelicula;
         this.tituloPelicula = tituloPelicula;
-        this.resumenPelicula = resumenPelicula;
         this.duracionPelicula = duracionPelicula;
         this.nombreSala = nombreSala;
-        this.capacidadSala = capacidadSala;
         this.fechaHora = fechaHora;
         this.precio = precio;
         this.localidadesDisponibles = localidadesDisponibles;
@@ -45,20 +42,16 @@ public class SesionDto {
         this.id = id;
     }
 
+    public Long getIdPelicula() {return idPelicula;}
+
+    public void setIdPelicula(Long idPelicula) {this.idPelicula = idPelicula;}
+
     public String getTituloPelicula() {
         return tituloPelicula;
     }
 
     public void setTituloPelicula(String tituloPelicula) {
         this.tituloPelicula = tituloPelicula;
-    }
-
-    public String getResumenPelicula() {
-        return resumenPelicula;
-    }
-
-    public void setResumenPelicula(String resumenPelicula) {
-        this.resumenPelicula = resumenPelicula;
     }
 
     public Integer getDuracionPelicula() {
@@ -75,14 +68,6 @@ public class SesionDto {
 
     public void setNombreSala(String nombreSala) {
         this.nombreSala = nombreSala;
-    }
-
-    public Integer getCapacidadSala() {
-        return capacidadSala;
-    }
-
-    public void setCapacidadSala(Integer capacidadSala) {
-        this.capacidadSala = capacidadSala;
     }
 
     public LocalDateTime getFechaHora() {

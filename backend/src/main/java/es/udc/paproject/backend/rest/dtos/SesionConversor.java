@@ -1,7 +1,6 @@
 package es.udc.paproject.backend.rest.dtos;
 
 import es.udc.paproject.backend.model.entities.Sesion;
-import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,16 +14,13 @@ public class SesionConversor {
         SesionDto dto = new SesionDto();
 
         dto.setId(sesion.getId());
+        dto.setIdPelicula(sesion.getPelicula().getId());
         dto.setFechaHora(sesion.getFechaHora());
         dto.setPrecio(sesion.getPrecio());
         dto.setLocalidadesDisponibles(sesion.getLocalidadesLibres());
-
         dto.setTituloPelicula(sesion.getPelicula().getTitulo());
-        dto.setResumenPelicula(sesion.getPelicula().getResumen());
         dto.setDuracionPelicula(sesion.getPelicula().getDuracion());
-
         dto.setNombreSala(sesion.getSala().getNombre());
-        dto.setCapacidadSala(sesion.getSala().getCapacidad());
 
         return dto;
     }
