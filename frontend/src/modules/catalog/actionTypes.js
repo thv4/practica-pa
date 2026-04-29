@@ -1,0 +1,1 @@
+export const GET_BILLBOARD_COMPLETED = 'project/catalog/getBillboardCompleted';

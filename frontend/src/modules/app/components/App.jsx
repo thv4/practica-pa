@@ -6,10 +6,20 @@ import Body from './Body';
 import Footer from './Footer';
 import users from '../../users';
 import backend from '../../../backend';
+import catalog from '../../catalog';
+
+const getToday = () => {
+    const date = new Date();
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    return `${year}-${month<10?`0${month}`:`${month}`}-${day<10?`0${day}`:`${day}`}`;
+}
 
 const App = () => {
 
     const dispatch = useDispatch();
+    const today = getToday();
 
     useEffect(() => {
 
@@ -21,7 +31,15 @@ const App = () => {
             }
         }
 
+        const getBillboard = async () => {
+            const response = await backend.catalogService.getBillboard(today);
+            if (response.ok) {
+                dispatch(catalog.actions.getBillboardCompleted(response.payload));
+                }
+            }
+
         tryLoginFromServiceToken();
+        getBillboard();
     
     }, [dispatch]);
 
