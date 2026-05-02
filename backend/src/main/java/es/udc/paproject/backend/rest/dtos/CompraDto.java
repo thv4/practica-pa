@@ -1,29 +1,45 @@
 package es.udc.paproject.backend.rest.dtos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import es.udc.paproject.backend.model.entities.Sesion;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class CompraDto {
 
     private Long compraId;
-    private UserDto user;
-    private SesionDto sesion;
 
+    // De la sesión: solo los atributos necesarios para el historial
+    private Long sesionId;
+    private String tituloPelicula;
+
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
+    private LocalDateTime fechaHoraSesion;
+
+    private String nombreSala;
+
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm")
     private LocalDateTime fechaRegistroCompra;
+
     private int numLocalidades;
-    private String tarjetaBancaria;
+    private BigDecimal precioTotal;
     private boolean entregada;
 
-    public CompraDto(){}
+    public CompraDto() {}
 
-    public CompraDto(Long compraId, UserDto user, SesionDto sesion, LocalDateTime fechaRegistroCompra, int numLocalidades, String tarjetaBancaria, boolean entregada){
+    public CompraDto(Long compraId, Long sesionId, String tituloPelicula,
+                     LocalDateTime fechaHoraSesion, String nombreSala,
+                     LocalDateTime fechaRegistroCompra, int numLocalidades,
+                     BigDecimal precioTotal, boolean entregada) {
         this.compraId = compraId;
-        this.user = user;
-        this.sesion = sesion;
+        this.sesionId = sesionId;
+        this.tituloPelicula = tituloPelicula;
+        this.fechaHoraSesion = fechaHoraSesion;
+        this.nombreSala = nombreSala;
         this.fechaRegistroCompra = fechaRegistroCompra;
         this.numLocalidades = numLocalidades;
-        this.tarjetaBancaria = tarjetaBancaria;
+        this.precioTotal = precioTotal;
         this.entregada = entregada;
     }
 
@@ -35,20 +51,36 @@ public class CompraDto {
         this.compraId = compraId;
     }
 
-    public UserDto getUser() {
-        return user;
+    public Long getSesionId() {
+        return sesionId;
     }
 
-    public void setUser(UserDto user) {
-        this.user = user;
+    public void setSesionId(Long sesionId) {
+        this.sesionId = sesionId;
     }
 
-    public SesionDto getSesion() {
-        return sesion;
+    public String getTituloPelicula() {
+        return tituloPelicula;
     }
 
-    public void setSesion(SesionDto sesion) {
-        this.sesion = sesion;
+    public void setTituloPelicula(String tituloPelicula) {
+        this.tituloPelicula = tituloPelicula;
+    }
+
+    public LocalDateTime getFechaHoraSesion() {
+        return fechaHoraSesion;
+    }
+
+    public void setFechaHoraSesion(LocalDateTime fechaHoraSesion) {
+        this.fechaHoraSesion = fechaHoraSesion;
+    }
+
+    public String getNombreSala() {
+        return nombreSala;
+    }
+
+    public void setNombreSala(String nombreSala) {
+        this.nombreSala = nombreSala;
     }
 
     public LocalDateTime getFechaRegistroCompra() {
@@ -67,12 +99,12 @@ public class CompraDto {
         this.numLocalidades = numLocalidades;
     }
 
-    public String getTarjetaBancaria() {
-        return tarjetaBancaria;
+    public BigDecimal getPrecioTotal() {
+        return precioTotal;
     }
 
-    public void setTarjetaBancaria(String tarjetaBancaria) {
-        this.tarjetaBancaria = tarjetaBancaria;
+    public void setPrecioTotal(BigDecimal precioTotal) {
+        this.precioTotal = precioTotal;
     }
 
     public boolean isEntregada() {
@@ -82,4 +114,5 @@ public class CompraDto {
     public void setEntregada(boolean entregada) {
         this.entregada = entregada;
     }
+
 }

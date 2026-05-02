@@ -8,6 +8,7 @@ import es.udc.paproject.backend.model.services.Block;
 import es.udc.paproject.backend.model.services.CompraService;
 import es.udc.paproject.backend.rest.common.ErrorsDto;
 import es.udc.paproject.backend.rest.dtos.BlockDto;
+import es.udc.paproject.backend.rest.dtos.BuyParamsDto;
 import es.udc.paproject.backend.rest.dtos.CompraConversor;
 import es.udc.paproject.backend.rest.dtos.CompraDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,9 +55,9 @@ public class CompraController {
     }
 
     @PostMapping("/buy")
-    public CompraDto buy(@RequestAttribute Long userId, @Validated @RequestBody CompraDto params) throws InstanceNotFoundException, MaxLocalidadesExceedException,SesionExpiredException{
+    public CompraDto buy(@RequestAttribute Long userId, @Validated @RequestBody BuyParamsDto params) throws InstanceNotFoundException, MaxLocalidadesExceedException,SesionExpiredException{
 
-        Compra compra = compraService.comprarEntradas(params.getSesion().getId(),userId, params.getNumLocalidades(), params.getTarjetaBancaria());
+        Compra compra = compraService.comprarEntradas(params.getSesionId(),userId, params.getNumLocalidades(), params.getTarjetaBancaria());
 
         return CompraConversor.toCompraDto(compra);
     }

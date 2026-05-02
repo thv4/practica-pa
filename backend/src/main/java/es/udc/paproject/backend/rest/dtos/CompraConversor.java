@@ -2,6 +2,7 @@ package es.udc.paproject.backend.rest.dtos;
 
 import es.udc.paproject.backend.model.entities.Compra;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -10,13 +11,18 @@ public class CompraConversor {
     private CompraConversor(){}
 
     public final static CompraDto toCompraDto(Compra compra){
+        BigDecimal precioTotal = compra.getSesion().getPrecio()
+                .multiply(BigDecimal.valueOf(compra.getNumLocalidades()));
+
         return new CompraDto(
                 compra.getCompraId(),
-                UserConversor.toUserDto(compra.getUser()),
-                SesionConversor.toSesionDto(compra.getSesion()),
+                compra.getSesion().getId(),
+                compra.getSesion().getPelicula().getTitulo(),
+                compra.getSesion().getFechaHora(),
+                compra.getSesion().getSala().getNombre(),
                 compra.getFechaRegistroCompra(),
                 compra.getNumLocalidades(),
-                compra.getTarjetaBancaria(),
+                precioTotal,
                 compra.getEntregada()
         );
     }
@@ -25,3 +31,4 @@ public class CompraConversor {
         return compras.stream().map(CompraConversor::toCompraDto).collect(Collectors.toList());
     }
 }
+
