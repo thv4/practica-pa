@@ -4,3 +4,4 @@ export {default as Success} from "./components/Success";
 export {default as Pager} from "./components/Pager";
 export {default as MovieLink} from "./components/MovieLink";
 export {default as BackLink} from "./components/BackLink";
+export {default as SessionLink} from "./components/SessionLink.jsx"

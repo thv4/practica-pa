@@ -1,4 +1,4 @@
-import {MovieLink} from '../../common';
+import {MovieLink, SessionLink} from '../../common';
 
 const Movies = ({ movies }) => {
 
@@ -21,9 +21,12 @@ const Movies = ({ movies }) => {
                                 <div className="d-flex flex-wrap mt-2">
                                     {/* Desestructuramos también aquí para que el IDE vea 'hora' */}
                                     {sesiones.map(({id, hora}) => (
-                                        <span key={id} className="badge bg-dark m-1 p-2">
+                                        /*<span key={id} className="badge bg-dark m-1 p-2">*/
+                                         <SessionLink id={id} name={hora} className="btn btn-outline-dark m-1 p-2 text-decoration-none"
+                                                      style={{minWidth: '70px'}}>
                                             {hora}
-                                        </span>
+                                        </SessionLink>
+                                        /*</span>*/
                                     ))}
                                 </div>
                             </div>

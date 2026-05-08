@@ -4,6 +4,7 @@ import * as actionTypes from './actionTypes';
 const initialState = {
     movies: null,
     billboardDate: null,
+    session: null,
 };
 
 const movies = (state = initialState.movies, action) => {
@@ -25,9 +26,21 @@ const billboardDate = (state = initialState.billboardDate, action) => {
     }
 }
 
+const session = (state = initialState.session, action) => {
+    switch (action.type) {
+        case actionTypes.GET_SESSION_COMPLETED:
+            return action.session;
+        case actionTypes.CLEAR_SESSION:
+            return null;
+        default:
+            return state;
+    }
+};
+
 const reducer = combineReducers({
     movies,
-    billboardDate
+    billboardDate,
+    session
 });
 
 export default reducer;

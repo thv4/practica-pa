@@ -34,6 +34,13 @@ export default {
     'project.users.Login.title': 'Login',
     'project.users.SignUp.fields.confirmPassword': 'Confirm password',
     'project.users.SignUp.title': 'Sign up',
-    'project.users.UpdateProfile.title': 'Update profile'
+    'project.users.UpdateProfile.title': 'Update profile',
+    'project.catalog.SessionDetails.notFound': 'Session not found.',
+    'project.catalog.SessionDetails.back': 'Back',
+    'project.catalog.SessionDetails.duration': 'Duration',
+    'project.catalog.SessionDetails.sala': 'Room',
+    'project.catalog.SessionDetails.date': 'Date and time',
+    'project.catalog.SessionDetails.price': 'Price',
+    'project.catalog.SessionDetails.availableSeats': 'Available seats'
 
 }

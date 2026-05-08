@@ -34,6 +34,12 @@ export default {
     'project.users.Login.title': 'Autenticarse',
     'project.users.SignUp.fields.confirmPassword': 'Confirmar contraseña',
     'project.users.SignUp.title': 'Registrarse',
-    'project.users.UpdateProfile.title': 'Actualizar perfil'
-
+    'project.users.UpdateProfile.title': 'Actualizar perfil',
+    'project.catalog.SessionDetails.notFound': 'No se ha encontrado la sesión solicitada.',
+    'project.catalog.SessionDetails.back': 'Volver',
+    'project.catalog.SessionDetails.duration': 'Duración',
+    'project.catalog.SessionDetails.sala': 'Sala',
+    'project.catalog.SessionDetails.date': 'Fecha y hora',
+    'project.catalog.SessionDetails.price': 'Precio',
+    'project.catalog.SessionDetails.availableSeats': 'Localidades disponibles'
 }

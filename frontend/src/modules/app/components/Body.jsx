@@ -7,6 +7,7 @@ import Home from './Home';
 import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users';
 import users from '../../users';
 import MovieDetails from "../../catalog/components/MovieDetails.jsx";
+import SessionDetails from '../../catalog/components/SessionDetails.jsx';
 
 const Body = () => {
 
@@ -19,6 +20,7 @@ const Body = () => {
             <Routes>
                 <Route path="/*" element={<Home/>}/>
                 <Route path="/catalog/movie-details/:id" element={<MovieDetails/>}/>
+                <Route path="/catalog/session-details/:id" element={<SessionDetails/>}/>
                 {loggedIn && <Route path="/users/update-profile" element={<UpdateProfile/>}/>}
                 {loggedIn && <Route path="/users/change-password" element={<ChangePassword/>}/>}
                 {loggedIn && <Route path="/users/logout" element={<Logout/>}/>}
