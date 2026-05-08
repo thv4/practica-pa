@@ -6,6 +6,7 @@ import AppGlobalComponents from './AppGlobalComponents';
 import Home from './Home';
 import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users';
 import users from '../../users';
+import MovieDetails from "../../catalog/components/MovieDetails.jsx";
 
 const Body = () => {
 
@@ -17,6 +18,7 @@ const Body = () => {
             <AppGlobalComponents/>
             <Routes>
                 <Route path="/*" element={<Home/>}/>
+                <Route path="/catalog/movie-details/:id" element={<MovieDetails/>}/>
                 {loggedIn && <Route path="/users/update-profile" element={<UpdateProfile/>}/>}
                 {loggedIn && <Route path="/users/change-password" element={<ChangePassword/>}/>}
                 {loggedIn && <Route path="/users/logout" element={<Logout/>}/>}

@@ -1,3 +1,5 @@
+import {MovieLink} from '../../common';
+
 const Movies = ({ movies }) => {
 
     if (!movies || movies.length === 0) {
@@ -15,7 +17,7 @@ const Movies = ({ movies }) => {
                     <div className="col-12 mb-4" key={pelicula.id}>
                         <div className="card shadow-sm">
                             <div className="card-body">
-                                <h5 className="card-title text-primary">{pelicula.titulo}</h5>
+                                <h5 className="card-title text-primary"><MovieLink id={pelicula.id} name={pelicula.titulo}/></h5>
                                 <div className="d-flex flex-wrap mt-2">
                                     {/* Desestructuramos también aquí para que el IDE vea 'hora' */}
                                     {sesiones.map(({id, hora}) => (

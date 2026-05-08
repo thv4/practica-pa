@@ -4,6 +4,7 @@ import * as selectors from '../selectors';
 import DateSelector from "./DateSelector";
 import backend from '../../../backend';
 import * as actions from '../actions';
+import catalog from "../index.js";
 
 const Billboard = () => {
     const movies = useSelector(selectors.getMovies);
