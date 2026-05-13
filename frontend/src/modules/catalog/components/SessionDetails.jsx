@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router';
-import {BackLink} from "../../common";
+import {BackLink, Errors} from "../../common";
 import {useSelector, useDispatch} from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
@@ -13,32 +13,65 @@ const SessionDetails = () => {
 
     const {id} = useParams();
     const sessionId = Number(id);
-    const [session, setProduct] = useState(null);
+    const [session, setSession] = useState(null);
+    const [backendErrors, setBackendErrors] = useState(null);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
 
-        const loadSession = async sessionId => {
+        const loadSession = async () => {
+            setLoading(true);
+            setBackendErrors(null);
             if (!Number.isNaN(sessionId)) {
                 const response = await backend.catalogService.getSession(sessionId);
                 if (response.ok) {
-                    //dispatch(actions.getSessionCompleted(response.payload));
-                    setProduct(response.payload);
+                    setSession(response.payload);
+                } else {
+                    setBackendErrors(response.payload);   //Guarda el error del backend
+                    setSession(null);
                 }
+            } else {
+                setBackendErrors({ globalError: "ID de sesión inválido" });
             }
+            setLoading(false);
         };
 
-        loadSession(sessionId);
+        loadSession();
 
     }, [sessionId]);
 
-    if (!session) {
+    // Mientras carga, no mostrar nada (o un spinner)
+    if (loading) {
+        return null;
+    }
+
+    // Si hay errores devueltos por el backend, mostrarlos con el componente Errors
+    if (backendErrors) {
         return (
-            <div className="alert alert-danger" role="alert">
-                <FormattedMessage id="project.catalog.SessionDetails.notFound" />
+            <div className="container mt-4">
+                <div className="mb-3">
+                    <BackLink/>
+                </div>
+                <Errors errors={backendErrors} onClose={() => setBackendErrors(null)} />
             </div>
         );
     }
 
+    // Si no hay sesión (y no hay errores), mostrar mensaje "no encontrada"
+    if (!session) {
+        return (
+            <div className="container mt-4">
+                <div className="mb-3">
+                    <BackLink/>
+                </div>
+                <div className="alert alert-danger" role="alert">
+                    <FormattedMessage id="project.catalog.SessionDetails.notFound" />
+                </div>
+            </div>
+        );
+    }
+
+    // Sesión cargada correctamente: mostrar detalles
     return (
         <div className="container mt-4">
             <div className="mb-3">
@@ -48,7 +81,7 @@ const SessionDetails = () => {
                 <Card.Body>
                     <Card.Title>{session.tituloPelicula}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
-                        {session.duracionPelicula} min
+                        <FormattedMessage id="project.catalog.SessionDetails.duration" />: {session.duracionPelicula} min
                     </Card.Subtitle>
                     <Card.Text>
                         <strong><FormattedMessage id="project.catalog.SessionDetails.sala" />:</strong> {session.nombreSala}<br />

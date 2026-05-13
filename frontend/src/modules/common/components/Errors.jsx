@@ -13,7 +13,11 @@ const Errors = ({errors, onClose}) => {
     let fieldErrors;
 
     if (errors.globalError) {
-        globalError = errors.globalError;
+        if (errors.globalError.startsWith('project.exceptions.')) {
+            globalError = intl.formatMessage({id:errors.globalError})
+        }else{
+            globalError = errors.globalError;
+        }
     } else if (errors.fieldErrors) {
         fieldErrors = [];
         errors.fieldErrors.forEach(e => {

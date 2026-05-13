@@ -41,6 +41,7 @@ export default {
     'project.catalog.SessionDetails.sala': 'Room',
     'project.catalog.SessionDetails.date': 'Date and time',
     'project.catalog.SessionDetails.price': 'Price',
-    'project.catalog.SessionDetails.availableSeats': 'Available seats'
+    'project.catalog.SessionDetails.availableSeats': 'Available seats',
+    'project.exceptions.PastDateException': 'The session has already started.'
 
 }

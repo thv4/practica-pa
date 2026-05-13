@@ -34,6 +34,7 @@ export default {
     'project.users.Login.title': 'Autenticarse',
     'project.users.SignUp.fields.confirmPassword': 'Confirmar contrasinal',
     'project.users.SignUp.title': 'Rexistrarse',
-    'project.users.UpdateProfile.title': 'Actualizar perfil'
+    'project.users.UpdateProfile.title': 'Actualizar perfil',
+    '"project.exceptions.PastDateException': 'A sesión xa comezou.",'
 
 }
