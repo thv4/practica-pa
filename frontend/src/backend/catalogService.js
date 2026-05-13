@@ -5,3 +5,5 @@ export  const getBillboard = async date => await appFetch('GET', `/carteleras/ca
 export const findMovieById = async id => await appFetch('GET', `/pelicula/peliculas/${id}`);
 
 export const  getSession = async sessionId => await appFetch('GET', `/sesion/${sessionId}`);
+
+export const buyTickets = async (sesionId, numLocalidades, tarjetaBancaria) => await appFetch('POST', '/compras/buy', {sesionId, numLocalidades, tarjetaBancaria});

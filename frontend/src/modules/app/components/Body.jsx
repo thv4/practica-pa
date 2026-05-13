@@ -8,6 +8,8 @@ import {Login, SignUp, UpdateProfile, ChangePassword, Logout} from '../../users'
 import users from '../../users';
 import MovieDetails from "../../catalog/components/MovieDetails.jsx";
 import SessionDetails from '../../catalog/components/SessionDetails.jsx';
+import BuyTickets from "../../catalog/components/BuyTickets.jsx";
+import BuyConfirm from "../../catalog/components/BuyConfirm.jsx";
 
 const Body = () => {
 
@@ -26,6 +28,8 @@ const Body = () => {
                 {loggedIn && <Route path="/users/logout" element={<Logout/>}/>}
                 {!loggedIn && <Route path="/users/login" element={<Login/>}/>}
                 {!loggedIn && <Route path="/users/signup" element={<SignUp/>}/>}
+                {loggedIn && <Route path="/catalog/buy/:sesionId" element={<BuyTickets/>}/> }
+                {loggedIn && <Route path="/catalog/buy-confirm" element={<BuyConfirm/>}/> }
             </Routes>
        </Container>
 

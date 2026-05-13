@@ -14,3 +14,8 @@ export const getSession = state => {
     const moduleState = getModuleState(state);
     return moduleState ? moduleState.session : null;
 };
+
+export const getLastPurchaseId = state => {
+    const moduleState = getModuleState(state);
+    return moduleState ? moduleState.lastPurchasedId : null;
+};

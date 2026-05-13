@@ -42,6 +42,15 @@ export default {
     'project.catalog.SessionDetails.date': 'Date and time',
     'project.catalog.SessionDetails.price': 'Price',
     'project.catalog.SessionDetails.availableSeats': 'Available seats',
+
+    'project.catalog.Movies.buy': 'Buy',
+    'project.catalog.BuyTickets.title' : 'Buy tickets',
+    'project.catalog.BuyTickets.fields.numLocalidades': 'Number of tickets',
+    'project.catalog.BuyTickets.fields.tarjetaBancaria': 'Credit Card',
+    'project.catalog.BuyTickets.buttons.buy': 'Buy',
+    'project.catalog.BuyTickets.validator.tarjetaBancaria': 'Credit card must have 16 digits',
+    'project.catalog.BuyConfirm.title': '¡Purchase completed successfully!',
+    'project.catalog.BuyConfirm.message': 'Registered purchase with identifier {compraId}',
     'project.exceptions.PastDateException': 'The session has already started.'
 
 }

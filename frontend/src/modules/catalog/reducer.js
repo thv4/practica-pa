@@ -5,6 +5,7 @@ const initialState = {
     movies: null,
     billboardDate: null,
     session: null,
+    lastPurchased: null,
 };
 
 const movies = (state = initialState.movies, action) => {
@@ -37,10 +38,20 @@ const session = (state = initialState.session, action) => {
     }
 };
 
+const lastPurchasedId = (state = null, action) => {
+    switch(action.type){
+        case actionTypes.BUY_TICKETS_COMPLETED:
+            return action.compraId;
+        default:
+            return state;
+    }
+};
+
 const reducer = combineReducers({
     movies,
     billboardDate,
-    session
+    session,
+    lastPurchasedId,
 });
 
 export default reducer;

@@ -42,6 +42,15 @@ export default {
     'project.catalog.SessionDetails.date': 'Fecha y hora',
     'project.catalog.SessionDetails.price': 'Precio',
     'project.catalog.SessionDetails.availableSeats': 'Localidades disponibles',
-    'project.exceptions.PastDateException': 'La sesión ya ha comenzado.'
+    'project.exceptions.PastDateException': 'La sesión ya ha comenzado.',
 
+
+    'project.catalog.Movies.buy': 'Comprar',
+    'project.catalog.BuyTickets.title' : 'Comprar entradas',
+    'project.catalog.BuyTickets.fields.numLocalidades': 'Número de entradas',
+    'project.catalog.BuyTickets.fields.tarjetaBancaria': 'Tarjeta bancaria',
+    'project.catalog.BuyTickets.buttons.buy': 'Comprar',
+    'project.catalog.BuyTickets.validator.tarjetaBancaria': 'La tarjeta debe tener 16 dígitos',
+    'project.catalog.BuyConfirm.title': '¡Compra realizada con éxito!',
+    'project.catalog.BuyConfirm.message': 'Tu compra se ha registrado con el identificador {compraId}'
 }

@@ -18,3 +18,8 @@ export const getSessionCompleted = session => ({
 export const clearSession = () => ({
     type: actionTypes.CLEAR_SESSION
 });
+
+export const buyTicketsCompleted = compraId => ({
+    type: actionTypes.BUY_TICKETS_COMPLETED,
+    compraId
+});
