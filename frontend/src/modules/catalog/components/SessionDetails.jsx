@@ -9,6 +9,9 @@ import * as selectors from '../selectors';
 import * as actions from '../actions';
 import {FormattedMessage} from 'react-intl';
 
+import {useNavigate} from 'react-router';
+import users from "../../users";
+
 const SessionDetails = () => {
 
     const {id} = useParams();
@@ -16,6 +19,9 @@ const SessionDetails = () => {
     const [session, setSession] = useState(null);
     const [backendErrors, setBackendErrors] = useState(null);
     const [loading, setLoading] = useState(true);
+
+    const navigate = useNavigate();
+    const isLoggedIn = useSelector(users.selectors.isLoggedIn);
 
     useEffect(() => {
 
@@ -90,7 +96,13 @@ const SessionDetails = () => {
                         <strong><FormattedMessage id="project.catalog.SessionDetails.availableSeats" />:</strong> {session.localidadesDisponibles}
                     </Card.Text>
 
-                    {/* Aquí se añadirá el formulario de compra en la siguiente iteración */}
+                    {isLoggedIn && (
+                        <Button
+                            variant="primary"
+                            onClick={() => navigate(`/catalog/buy/${sessionId}`)}>
+                            <FormattedMessage id="project.catalog.BuyTickets.buttons.buy"/>
+                        </Button>
+                    )}
 
                 </Card.Body>
             </Card>

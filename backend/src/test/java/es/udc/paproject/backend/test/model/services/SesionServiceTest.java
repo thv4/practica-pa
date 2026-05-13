@@ -2,6 +2,7 @@ package es.udc.paproject.backend.test.model.services;
 
 import es.udc.paproject.backend.model.entities.*;
 import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.InvalidPost6DaysDateException;
 import es.udc.paproject.backend.model.services.SesionService;
 
 import org.junit.jupiter.api.Test;
