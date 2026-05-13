@@ -55,11 +55,11 @@ public class CompraController {
     }
 
     @PostMapping("/buy")
-    public CompraDto buy(@RequestAttribute Long userId, @Validated @RequestBody BuyParamsDto params) throws InstanceNotFoundException, MaxLocalidadesExceedException,SesionExpiredException{
+    public Long buy(@RequestAttribute Long userId, @Validated @RequestBody BuyParamsDto params) throws InstanceNotFoundException, MaxLocalidadesExceedException,SesionExpiredException{
 
         Compra compra = compraService.comprarEntradas(params.getSesionId(),userId, params.getNumLocalidades(), params.getTarjetaBancaria());
 
-        return CompraConversor.toCompraDto(compra);
+        return compra.getCompraId();
     }
 
     @GetMapping("/compras")
