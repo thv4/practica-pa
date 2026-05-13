@@ -35,6 +35,13 @@ export default {
     'project.users.SignUp.fields.confirmPassword': 'Confirmar contrasinal',
     'project.users.SignUp.title': 'Rexistrarse',
     'project.users.UpdateProfile.title': 'Actualizar perfil',
+    'project.catalog.SessionDetails.notFound': 'Non se atopou a sesión solicitada.',
+    'project.catalog.SessionDetails.back': 'Voltar',
+    'project.catalog.SessionDetails.duration': 'Duración',
+    'project.catalog.SessionDetails.sala': 'Sala',
+    'project.catalog.SessionDetails.date': 'Data e hora',
+    'project.catalog.SessionDetails.price': 'Prezo',
+    'project.catalog.SessionDetails.availableSeats': 'Localidades dispoñibles',
     '"project.exceptions.PastDateException': 'A sesión xa comezou.",'
 
 }
