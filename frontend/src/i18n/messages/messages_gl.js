@@ -51,6 +51,18 @@ export default {
     'project.catalog.BuyTickets.validator.tarjetaBancaria': 'A tarxeta debe ter 16 díxitos',
     'project.catalog.BuyConfirm.title': '¡Compra realizada con éxito!',
     'project.catalog.BuyConfirm.message': 'A compra se rexistrou co identificador {compraId}',
-    '"project.exceptions.PastDateException': 'A sesión xa comezou.",'
+    '"project.exceptions.PastDateException': 'A sesión xa comezou.",',
+
+    'project.catalog.PurchaseHistory.title': 'Histórico de compras',
+    'project.catalog.PurchaseHistory.empty': 'Non tes compras realizadas.',
+    'project.catalog.PurchaseHistory.movie': 'Película',
+    'project.catalog.PurchaseHistory.session': 'Data sesión',
+    'project.catalog.PurchaseHistory.sala': 'Sala',
+    'project.catalog.PurchaseHistory.date': 'Data compra',
+    'project.catalog.PurchaseHistory.tickets': 'Entradas',
+    'project.catalog.PurchaseHistory.total': 'Total',
+    'project.catalog.PurchaseHistory.delivered': 'Entregada',
+    'project.catalog.PurchaseHistory.yes': 'Sí',
+    'project.catalog.PurchaseHistory.no': 'Non',
 
 }

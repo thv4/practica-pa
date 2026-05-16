@@ -29,6 +29,9 @@ const Header = () => {
                                 <NavDropdown.Item as={Link} to="/users/change-password">
                                     <FormattedMessage id="project.users.ChangePassword.title"/>
                                 </NavDropdown.Item>
+                                <NavDropdown.Item as={Link} to="/catalog/purchase-history">
+                                    <FormattedMessage id="project.catalog.PurchaseHistory.title"/>
+                                </NavDropdown.Item>
                                 <NavDropdown.Divider />
                                 <NavDropdown.Item as={Link} to="/users/logout">
                                     <FormattedMessage id="project.app.Header.logout"/>

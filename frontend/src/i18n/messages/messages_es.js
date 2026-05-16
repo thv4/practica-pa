@@ -52,5 +52,18 @@ export default {
     'project.catalog.BuyTickets.buttons.buy': 'Comprar',
     'project.catalog.BuyTickets.validator.tarjetaBancaria': 'La tarjeta debe tener 16 dígitos',
     'project.catalog.BuyConfirm.title': '¡Compra realizada con éxito!',
-    'project.catalog.BuyConfirm.message': 'Tu compra se ha registrado con el identificador {compraId}'
+    'project.catalog.BuyConfirm.message': 'Tu compra se ha registrado con el identificador {compraId}',
+
+
+    'project.catalog.PurchaseHistory.title': 'Histórico de compras',
+    'project.catalog.PurchaseHistory.empty': 'No tienes compras realizadas.',
+    'project.catalog.PurchaseHistory.movie': 'Película',
+    'project.catalog.PurchaseHistory.session': 'Fecha sesión',
+    'project.catalog.PurchaseHistory.sala': 'Sala',
+    'project.catalog.PurchaseHistory.date': 'Fecha compra',
+    'project.catalog.PurchaseHistory.tickets': 'Entradas',
+    'project.catalog.PurchaseHistory.total': 'Total',
+    'project.catalog.PurchaseHistory.delivered': 'Entregada',
+    'project.catalog.PurchaseHistory.yes': 'Sí',
+    'project.catalog.PurchaseHistory.no': 'No'
 }

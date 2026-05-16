@@ -51,6 +51,18 @@ export default {
     'project.catalog.BuyTickets.validator.tarjetaBancaria': 'Credit card must have 16 digits',
     'project.catalog.BuyConfirm.title': '¡Purchase completed successfully!',
     'project.catalog.BuyConfirm.message': 'Registered purchase with identifier {compraId}',
-    'project.exceptions.PastDateException': 'The session has already started.'
+    'project.exceptions.PastDateException': 'The session has already started.',
+
+    'project.catalog.PurchaseHistory.title': 'Purchase History',
+    'project.catalog.PurchaseHistory.empty': 'Dont have any purchase.',
+    'project.catalog.PurchaseHistory.movie': 'Movie',
+    'project.catalog.PurchaseHistory.session': 'Session Date',
+    'project.catalog.PurchaseHistory.sala': 'Room',
+    'project.catalog.PurchaseHistory.date': 'Purchase Date',
+    'project.catalog.PurchaseHistory.tickets': 'Tickets',
+    'project.catalog.PurchaseHistory.total': 'Total',
+    'project.catalog.PurchaseHistory.delivered': 'Delivered',
+    'project.catalog.PurchaseHistory.yes': 'Yes',
+    'project.catalog.PurchaseHistory.no': 'No',
 
 }
