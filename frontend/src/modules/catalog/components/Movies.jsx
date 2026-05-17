@@ -22,6 +22,7 @@ const Movies = ({ movies }) => {
                                     {/* Desestructuramos también aquí para que el IDE vea 'hora' */}
                                     {sesiones.map(({id, hora}) => (
                                         /*<span key={id} className="badge bg-dark m-1 p-2">*/
+                                        // eslint-disable-next-line react/jsx-key
                                          <SessionLink id={id} name={hora} className="btn btn-outline-dark m-1 p-2 text-decoration-none"
                                                       style={{minWidth: '70px'}}>
                                             {hora}

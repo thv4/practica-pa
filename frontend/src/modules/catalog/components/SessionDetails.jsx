@@ -1,12 +1,10 @@
 import {useState, useEffect} from 'react';
 import {useParams} from 'react-router';
-import {BackLink, Errors} from "../../common";
-import {useSelector, useDispatch} from 'react-redux';
+import {BackLink, Errors, MovieLink} from "../../common";
+import {useSelector} from 'react-redux';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 import backend from '../../../backend';
-import * as selectors from '../selectors';
-import * as actions from '../actions';
 import {FormattedMessage} from 'react-intl';
 
 import {useNavigate} from 'react-router';
@@ -22,6 +20,7 @@ const SessionDetails = () => {
 
     const navigate = useNavigate();
     const isLoggedIn = useSelector(users.selectors.isLoggedIn);
+    const user = useSelector(users.selectors.getUser);
 
     useEffect(() => {
 
@@ -85,7 +84,7 @@ const SessionDetails = () => {
             </div>
             <Card>
                 <Card.Body>
-                    <Card.Title>{session.tituloPelicula}</Card.Title>
+                    <Card.Title> <MovieLink id={session.idPelicula} name={session.tituloPelicula}/></Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
                         <FormattedMessage id="project.catalog.SessionDetails.duration" />: {session.duracionPelicula} min
                     </Card.Subtitle>
@@ -96,7 +95,7 @@ const SessionDetails = () => {
                         <strong><FormattedMessage id="project.catalog.SessionDetails.availableSeats" />:</strong> {session.localidadesDisponibles}
                     </Card.Text>
 
-                    {isLoggedIn && (
+                    {isLoggedIn && (user && user.role !== 'TAQUILLERO') &&(
                         <Button
                             variant="primary"
                             onClick={() => navigate(`/catalog/buy/${sessionId}`)}>

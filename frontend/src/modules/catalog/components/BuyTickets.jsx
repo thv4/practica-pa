@@ -13,7 +13,6 @@ import * as actions from '../actions';
 import backend from '../../../backend';
 import users from '../../users';
 import {useSelector} from 'react-redux';
-import {useIntl} from 'react-intl';
 
 
 const BuyTickets = () => {
@@ -21,7 +20,6 @@ const BuyTickets = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const {sesionId} = useParams();
-    const intl = useIntl();
 
     const isLoggedIn = useSelector(users.selectors.isLoggedIn);
 
@@ -29,10 +27,11 @@ const BuyTickets = () => {
     const [tarjetaBancaria,setTarjetaBancaria] = useState('');
     const [formValidated,setFormValidated] = useState(false);
     const [backendErrors, setBackendErrors] = useState(null);
+    const user = useSelector(users.selectors.getUser);
 
     let form;
 
-    if(!isLoggedIn){
+    if(!isLoggedIn || (user && user.role !== 'ESPECTADOR')){
         navigate('/users/login');
         return null;
     }

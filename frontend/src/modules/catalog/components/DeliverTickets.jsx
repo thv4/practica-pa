@@ -10,7 +10,7 @@ import Col from 'react-bootstrap/Col';
 import Alert from 'react-bootstrap/Alert';
 
 import {BackLink, Errors} from '../../common';
-import * as actions from '../actions'; // Importamos las acciones del módulo
+import * as actions from '../actions';
 import backend from '../../../backend';
 import users from '../../users';
 

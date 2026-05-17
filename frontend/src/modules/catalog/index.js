@@ -1,8 +1,6 @@
 import * as actions from './actions';
-import reducer from './reducer'; // Importamos el reducer
+import reducer from './reducer';
 import * as selectors from './selectors';
-import { default as Billboard } from './components/Billboard';
-import { default as SessionDetails } from './components/SessionDetails';
 
 export default {actions, reducer, selectors};
 

@@ -72,7 +72,7 @@ export default {
     'project.catalog.PurchaseHistory.empty': 'No tienes compras realizadas.',
     'project.catalog.PurchaseHistory.movie': 'Película',
     'project.catalog.PurchaseHistory.session': 'Fecha sesión',
-    'project.catalog.PurchaseHistory.sala': 'Sala',
+    'project.catalog.PurchaseHistory.id': 'Id compra',
     'project.catalog.PurchaseHistory.date': 'Fecha compra',
     'project.catalog.PurchaseHistory.tickets': 'Entradas',
     'project.catalog.PurchaseHistory.total': 'Total',
