@@ -23,3 +23,8 @@ export const buyTicketsCompleted = compraId => ({
     type: actionTypes.BUY_TICKETS_COMPLETED,
     compraId
 });
+
+export const deliverTicketsCompleted = entregaResult => ({
+    type: actionTypes.DELIVER_TICKETS_COMPLETED,
+    entregaResult
+});

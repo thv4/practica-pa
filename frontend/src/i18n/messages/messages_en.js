@@ -43,6 +43,20 @@ export default {
     'project.catalog.SessionDetails.price': 'Price',
     'project.catalog.SessionDetails.availableSeats': 'Available seats',
 
+    'project.catalog.MovieDetails.movie': 'Movie',
+    'project.catalog.MovieDetails.duration': 'Duration',
+    'project.catalog.MovieDetails.synopsis': 'Synopsis',
+    'project.catalog.MovieDetails.info': 'Information provided by the Official Billboard',
+    'project.catalog.MovieDetails.notFound': 'Movie not found',
+
+    'project.catalog.DeliverTickets.title': 'Ticket Delivery',
+    'project.catalog.DeliverTickets.fields.compraId': 'Purchase ID',
+    'project.catalog.DeliverTickets.fields.tarjetaBancaria': 'Credit Card Number',
+    'project.catalog.DeliverTickets.buttons.deliver': 'Confirm Delivery',
+    'project.catalog.DeliverTickets.success': 'Tickets delivered successfully!',
+
+    'project.catalog.header.deliverTickets': 'Deliver Tickets',
+
     'project.catalog.Movies.buy': 'Buy',
     'project.catalog.BuyTickets.title' : 'Buy tickets',
     'project.catalog.BuyTickets.fields.numLocalidades': 'Number of tickets',

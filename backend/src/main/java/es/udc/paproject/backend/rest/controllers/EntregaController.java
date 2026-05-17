@@ -60,17 +60,6 @@ public class EntregaController {
         return new ErrorsDto(errorMessage);
     }
 
-    @ExceptionHandler(InstanceNotFoundException.class)
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ResponseBody
-    public ErrorsDto handleInstanceNotFoundException(InstanceNotFoundException exception, Locale locale) {
-
-        String errorMessage = messageSource.getMessage("project.exceptions.InstanceNotFoundException",
-                new Object[]{exception.getName(), exception.getKey().toString()},
-                "Instance not found", locale);
-
-        return new ErrorsDto(errorMessage);
-    }
 
     @PostMapping("/entregar")
     public EntregaResultDto entregarEntradas(

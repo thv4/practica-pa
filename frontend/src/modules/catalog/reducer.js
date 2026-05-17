@@ -47,11 +47,21 @@ const lastPurchasedId = (state = null, action) => {
     }
 };
 
+const lastDelivery = (state = null, action) => {
+    switch (action.type) {
+        case actionTypes.DELIVER_TICKETS_COMPLETED:
+            return action.entregaResult;
+        default:
+            return state;
+    }
+}
+
 const reducer = combineReducers({
     movies,
     billboardDate,
     session,
     lastPurchasedId,
+    lastDelivery,
 });
 
 export default reducer;

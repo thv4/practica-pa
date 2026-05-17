@@ -14,4 +14,6 @@ export { default as BuyTickets} from './components/BuyTickets.jsx';
 
 export { default as BuyConfirm} from './components/BuyConfirm.jsx';
 
+export {default as DeliverTickets} from './components/DeliverTickets';
+
 export { default as PurchaseHistory} from './components/PurchaseHistory';

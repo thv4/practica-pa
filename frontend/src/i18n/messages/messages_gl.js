@@ -43,6 +43,20 @@ export default {
     'project.catalog.SessionDetails.price': 'Prezo',
     'project.catalog.SessionDetails.availableSeats': 'Localidades dispoñibles',
 
+    'project.catalog.MovieDetails.movie': 'Película',
+    'project.catalog.MovieDetails.duration': 'Duración',
+    'project.catalog.MovieDetails.synopsis': 'Sinopse',
+    'project.catalog.MovieDetails.info': 'Información proporcionada pola Carteleira Oficial',
+    'project.catalog.MovieDetails.notFound': 'Non se atopou a película solicitada.',
+
+    'project.catalog.DeliverTickets.title': 'Entrega de Entradas',
+    'project.catalog.DeliverTickets.fields.compraId': 'Identificador de Compra',
+    'project.catalog.DeliverTickets.fields.tarjetaBancaria': 'Número de Tarxeta',
+    'project.catalog.DeliverTickets.buttons.deliver': 'Confirmar Entrega',
+    'project.catalog.DeliverTickets.success': '¡Entradas entregadas con éxito!',
+
+    'project.catalog.header.deliverTickets': 'Entregar Entradas',
+
     'project.catalog.Movies.buy': 'Comprar',
     'project.catalog.BuyTickets.title' : 'Comprar entradas',
     'project.catalog.BuyTickets.fields.numLocalidades': 'Número de entradas',

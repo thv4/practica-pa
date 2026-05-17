@@ -12,6 +12,8 @@ const Header = () => {
 
     const userName = useSelector(users.selectors.getUserName);
 
+    const user = useSelector(users.selectors.getUser);
+
     return (
 
         <Navbar bg="light" expand="lg" className="border-bottom">
@@ -19,6 +21,15 @@ const Header = () => {
                 <Navbar.Brand as={Link} to="/">PA Project</Navbar.Brand>
                 <Navbar.Toggle aria-controls="navbarSupportedContent" className="mb-3"/>
                 <Navbar.Collapse id="navbarSupportedContent">
+
+                    <Nav className="me-auto">
+                        {user && user.role === 'TAQUILLERO' && (
+                            <Nav.Link as={Link} to="/catalog/deliver-tickets">
+                                <span className="fa-solid fa-ticket"></span>&nbsp;
+                                <FormattedMessage id="project.catalog.header.deliverTickets"/>
+                            </Nav.Link>
+                        )}
+                    </Nav>
 
                     {userName ? (
                         <Nav className="ms-auto">

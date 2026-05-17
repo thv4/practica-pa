@@ -10,6 +10,7 @@ import MovieDetails from "../../catalog/components/MovieDetails.jsx";
 import SessionDetails from '../../catalog/components/SessionDetails.jsx';
 import BuyTickets from "../../catalog/components/BuyTickets.jsx";
 import BuyConfirm from "../../catalog/components/BuyConfirm.jsx";
+import DeliverTickets from '../../catalog/components/DeliverTickets.jsx';
 import PurchaseHistory from "../../catalog/components/PurchaseHistory.jsx";
 
 const Body = () => {
@@ -31,6 +32,7 @@ const Body = () => {
                 {!loggedIn && <Route path="/users/signup" element={<SignUp/>}/>}
                 {loggedIn && <Route path="/catalog/buy/:sesionId" element={<BuyTickets/>}/> }
                 {loggedIn && <Route path="/catalog/buy-confirm" element={<BuyConfirm/>}/> }
+                {loggedIn && <Route path="/catalog/deliver-tickets" element={<DeliverTickets/>}/>}
                 {loggedIn && <Route path="/catalog/purchase-history" element={<PurchaseHistory/>}/>}
             </Routes>
        </Container>

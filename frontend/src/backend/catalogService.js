@@ -8,4 +8,6 @@ export const  getSession = async sessionId => await appFetch('GET', `/sesion/${s
 
 export const buyTickets = async (sesionId, numLocalidades, tarjetaBancaria) => await appFetch('POST', '/compras/buy', {sesionId, numLocalidades, tarjetaBancaria});
 
+export const deliverTickets = async (compraId, tarjetaBancaria) => await appFetch('POST','/entregas/entregar', {compraId, tarjetaBancaria});
+
 export const getPurchaseHistory = async (page) => await appFetch('GET', `/compras/compras?page=${page}`);
