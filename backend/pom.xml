@@ -158,9 +158,13 @@
                     </dependency>
                 </dependencies>
                 <configuration>
-                    <configLocation>sun_checks.xml</configLocation>
+                    <configLocation>${project.basedir}/checkstyle.xml</configLocation>
+                    <!-- Analizar modelo, controladores y DTOs; excluir infraestructura de rest/common. -->
+                    <includes>**/model/**/*.java,**/rest/controllers/**/*.java,**/rest/dtos/**/*.java</includes>
                     <consoleOutput>true</consoleOutput>
                     <includeResources>false</includeResources>
+                    <includeTestResources>false</includeTestResources>
+                    <includeTestSourceDirectory>false</includeTestSourceDirectory>
                     <linkXRef>false</linkXRef>
                 </configuration>
             </plugin>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE module PUBLIC
+    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
+    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<!--
+    Criterios de mantenibilidad Los umbrales son decisiones
+    propias. El ambito se define en el pom.xml.
+-->
+<module name="Checker">
+    <property name="charset" value="UTF-8"/>
+    <property name="fileExtensions" value="java"/>
+    <property name="severity" value="error"/>
+
+    <!-- Detectar restos de conflictos de Git, tambien dentro de comentarios. -->
+    <module name="RegexpSingleline">
+        <property name="format" value="^\s*(?:&lt;{7}|={7}|&gt;{7}|\|{7})(?:\s.*)?$"/>
+        <property name="maximum" value="0"/>
+        <property name="message" value="Restos de un conflicto de Git en el archivo."/>
+    </module>
+
+    <module name="TreeWalker">
+        <!-- Limitar la complejidad para facilitar comprension y pruebas. -->
+        <module name="CyclomaticComplexity">
+            <property name="max" value="10"/>
+        </module>
+
+        <!-- Metodos y constructores de hasta 50 lineas, sin blancos ni comentarios. -->
+        <module name="MethodLength">
+            <property name="max" value="50"/>
+            <property name="countEmpty" value="false"/>
+        </module>
+
+        <!-- Metodos y constructores con un maximo de 7 parametros. -->
+        <module name="ParameterNumber">
+            <property name="max" value="7"/>
+        </module>
+
+        <!-- Un maximo de 2 anidamientos de if respecto al nivel exterior. -->
+        <module name="NestedIfDepth">
+            <property name="max" value="2"/>
+        </module>
+
+        <!-- Evitar capturas genericas y bloques catch sin instrucciones. -->
+        <module name="IllegalCatch"/>
+        <module name="EmptyCatchBlock">
+            <property name="commentFormat" value="(?!)"/>
+        </module>
+
+        <!-- Dar nombre a valores numericos; permitir anotaciones y hashCode. -->
+        <module name="MagicNumber">
+            <property name="ignoreNumbers" value="-1,0,1"/>
+            <property name="ignoreAnnotation" value="true"/>
+            <property name="ignoreHashCodeMethod" value="true"/>
+        </module>
+
+        <!-- El Javadoc existente de metodos publicos debe describir parametros y retorno. -->
+        <module name="JavadocMethod">
+            <property name="accessModifiers" value="public"/>
+            <property name="tokens" value="METHOD_DEF"/>
+            <property name="allowMissingParamTags" value="false"/>
+            <property name="allowMissingReturnTag" value="false"/>
+        </module>
+
+        <!-- Mantener solo imports necesarios y sin duplicados. -->
+        <module name="UnusedImports"/>
+        <module name="RedundantImport"/>
+    </module>
+</module>
