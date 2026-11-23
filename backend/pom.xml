@@ -36,6 +36,7 @@
         <!-- Plugin versions -->
         <surefireMavenPlugin.version>3.5.2</surefireMavenPlugin.version>
         <sqlPlugin.version>3.0.0</sqlPlugin.version>
+        <spotbugsMavenPlugin.version>4.10.5.0</spotbugsMavenPlugin.version>
         
     </properties>
     
@@ -176,6 +177,22 @@
                 <configuration>
                     <argLine>${argLine}</argLine>
                     <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>com.github.spotbugs</groupId>
+                <artifactId>spotbugs-maven-plugin</artifactId>
+                <version>${spotbugsMavenPlugin.version}</version>
+                <configuration>
+                    <!-- Analizar bytecode propio; excluir tests e infraestructura de rest/common. -->
+                    <onlyAnalyze>es.udc.paproject.backend.model.-,es.udc.paproject.backend.rest.controllers.-,es.udc.paproject.backend.rest.dtos.-</onlyAnalyze>
+                    <includeTests>false</includeTests>
+                    <effort>Max</effort>
+                    <threshold>Low</threshold>
+                    <xmlOutput>true</xmlOutput>
+                    <htmlOutput>true</htmlOutput>
+                    <failOnError>true</failOnError>
                 </configuration>
             </plugin>
 
