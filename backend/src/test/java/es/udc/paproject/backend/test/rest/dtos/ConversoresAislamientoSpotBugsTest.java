@@ -19,16 +19,17 @@ import es.udc.paproject.backend.rest.dtos.CompraConversor;
 import es.udc.paproject.backend.rest.dtos.CompraDto;
 import es.udc.paproject.backend.rest.dtos.UserConversor;
 
-/**
- * Pruebas derivadas de la revision de EI_EXPOSE_REP y EI_EXPOSE_REP2.
- * Comprueban el aislamiento de respuestas ya convertidas respecto al modelo.
- */
 class ConversoresAislamientoSpotBugsTest {
 
-    private static Compra crearCompra() {
+    private static User crearUsuario() {
         User usuario = new User("viewer", "password", "Nombre", "Apellidos", "viewer@test.com");
         usuario.setId(1L);
         usuario.setRole(User.RoleType.ESPECTADOR);
+        return usuario;
+    }
+
+    private static Compra crearCompra() {
+        User usuario = crearUsuario();
         Pelicula pelicula = new Pelicula("Titulo original", "Resumen", 120);
         pelicula.setId(2L);
         Sesion sesion = new Sesion(new Sala("Sala 1", 100), pelicula,
@@ -72,7 +73,7 @@ class ConversoresAislamientoSpotBugsTest {
 
     @Test
     void respuestaDeAutenticacionConservaElPerfilTrasModificarLaEntidad() {
-        User usuario = crearCompra().getUser();
+        User usuario = crearUsuario();
         AuthenticatedUserDto respuesta = UserConversor.toAuthenticatedUserDto("token-de-prueba", usuario);
 
         usuario.setFirstName("Nombre modificado");
