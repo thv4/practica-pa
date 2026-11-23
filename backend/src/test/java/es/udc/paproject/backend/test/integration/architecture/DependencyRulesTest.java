@@ -22,7 +22,7 @@ public class DependencyRulesTest {
     @ArchTest 
     static final ArchRule modelNoDependeDeRest = 
         noClasses().that().resideInAPackage("..model..")
-            .should().dependOnClassesThat().haveSimpleNameEndingWith("..rest..");
+            .should().dependOnClassesThat().resideInAPackage("..rest..");
 
     @ArchTest
     static final ArchRule entidadesNoDependenDeServicios =
