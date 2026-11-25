@@ -1,30 +1,49 @@
 package es.udc.paproject.backend.test.model.services.unit;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.*;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.ArgumentCaptor;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.SliceImpl;
 
-import es.udc.paproject.backend.model.entities.*;
-import es.udc.paproject.backend.model.exceptions.*;
+import es.udc.paproject.backend.model.entities.Compra;
+import es.udc.paproject.backend.model.entities.CompraDao;
+import es.udc.paproject.backend.model.entities.Pelicula;
+import es.udc.paproject.backend.model.entities.Sala;
+import es.udc.paproject.backend.model.entities.Sesion;
+import es.udc.paproject.backend.model.entities.SesionDao;
+import es.udc.paproject.backend.model.entities.User;
+import es.udc.paproject.backend.model.exceptions.IncorrectCreditCardException;
+import es.udc.paproject.backend.model.exceptions.InstanceNotFoundException;
+import es.udc.paproject.backend.model.exceptions.MaxLocalidadesExceedException;
+import es.udc.paproject.backend.model.exceptions.SesionExpiredException;
+import es.udc.paproject.backend.model.exceptions.SessionAlreadyStartedException;
+import es.udc.paproject.backend.model.exceptions.TicketsAlreadyDeliveredException;
 import es.udc.paproject.backend.model.services.CompraServiceImpl;
 import es.udc.paproject.backend.model.services.PermissionChecker;
 
@@ -228,6 +247,7 @@ class CompraServiceImplUnitTest {
     }
 
     @Test
+    @Tag("fallo-conocido")
     void comprarEntradasDeSesionComenzadaSinStockInformaDeSesionCaducada() throws Exception {
         prepararCompra(crearSesionComenzada(0));
 

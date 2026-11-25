@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -117,6 +118,7 @@ class CarteleraServiceImplUnitTest {
     }
 
     @Test
+    @Tag("fallo-conocido")
     void getCarteleraFinDelDiaSigueEnElMismoDiaAlRedondearASegundos() throws Exception {
         LocalDate dia = LocalDate.now().plusDays(2);
         daoDevuelve(List.of());
