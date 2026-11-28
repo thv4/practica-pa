@@ -114,6 +114,13 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
+            <!-- JETM: medición de tiempos de ejecución internos (pruebas no funcionales). -->
+            <groupId>fm.void.jetm</groupId>
+            <artifactId>jetm</artifactId>
+            <version>1.2.3</version>
+        </dependency>
+
+        <dependency>
             <groupId>net.jqwik</groupId>
             <artifactId>jqwik</artifactId>
             <version>1.9.2</version>
@@ -212,6 +219,8 @@
                         <param>es.udc.paproject.backend.test.rest.dtos.PeliculaConversorUnitTest</param>
                         <param>es.udc.paproject.backend.test.rest.dtos.SesionConversorUnitTest</param>
                         <param>es.udc.paproject.backend.test.rest.dtos.UserConversorUnitTest</param>
+                        <param>es.udc.paproject.backend.test.rendimiento.CarteleraServiceRendimientoUnitTest</param>
+                        <param>es.udc.paproject.backend.test.rendimiento.CompraServiceRendimientoUnitTest</param>
                     </targetTests>
                     <excludedGroups>
                         <param>fallo-conocido</param>

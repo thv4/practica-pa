@@ -18,11 +18,17 @@ import org.springframework.data.domain.Slice;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import etm.core.configuration.EtmManager;
+import etm.core.monitor.EtmMonitor;
+import etm.core.monitor.EtmPoint;
+
 import java.time.LocalDateTime;
 
 @Service
 @Transactional
 public class CompraServiceImpl implements CompraService {
+
+    private static final EtmMonitor ETM_MONITOR = EtmManager.getEtmMonitor();
 
     @Autowired
     private CompraDao compraDao;
@@ -36,10 +42,20 @@ public class CompraServiceImpl implements CompraService {
     @Override
     public Compra comprarEntradas(Long sesionId, Long usuarioId, int n, String tarjeta) throws InstanceNotFoundException, MaxLocalidadesExceedException, SesionExpiredException {
 
+        EtmPoint punto = ETM_MONITOR.createPoint("CompraService.comprarEntradas");
+        try {
+            return realizarCompra(sesionId, usuarioId, n, tarjeta);
+        } finally {
+            punto.collect();
+        }
+    }
+
+    private Compra realizarCompra(Long sesionId, Long usuarioId, int n, String tarjeta)
+            throws InstanceNotFoundException, MaxLocalidadesExceedException, SesionExpiredException {
+
         User user = permissionChecker.checkUser(usuarioId);
 
-        Sesion sesion = sesionDao.findById(sesionId)
-                .orElseThrow(() -> new InstanceNotFoundException("project.entities.sesion", sesionId));
+        Sesion sesion = buscarSesion(sesionId);
 
         if(!sesion.hayDisponibilidad(n)){
             throw new MaxLocalidadesExceedException();
@@ -54,19 +70,52 @@ public class CompraServiceImpl implements CompraService {
 
         Compra compra = new Compra(user,sesion, LocalDateTime.now(),n,tarjeta,false);
 
-        compraDao.save(compra);
+        guardarCompra(compra);
 
         return compra;
+    }
+
+    private Sesion buscarSesion(Long sesionId) throws InstanceNotFoundException {
+        EtmPoint punto = ETM_MONITOR.createPoint("CompraService.comprarEntradas:buscarSesion");
+        try {
+            return sesionDao.findById(sesionId)
+                    .orElseThrow(() -> new InstanceNotFoundException("project.entities.sesion", sesionId));
+        } finally {
+            punto.collect();
+        }
+    }
+
+    private void guardarCompra(Compra compra) {
+        EtmPoint punto = ETM_MONITOR.createPoint("CompraService.comprarEntradas:guardar");
+        try {
+            compraDao.save(compra);
+        } finally {
+            punto.collect();
+        }
     }
 
     @Override
     public Slice<Compra> findHistoricoCompras(Long usuarioId, int page, int size) throws InstanceNotFoundException {
 
-        permissionChecker.checkUser(usuarioId);
+        EtmPoint punto = ETM_MONITOR.createPoint("CompraService.findHistoricoCompras");
+        try {
+            permissionChecker.checkUser(usuarioId);
 
-        Pageable pageable = PageRequest.of(page,size);
+            Pageable pageable = PageRequest.of(page,size);
 
-        return compraDao.findByUser_IdOrderByFechaRegistroCompraDesc(usuarioId,pageable);
+            return consultarHistorico(usuarioId, pageable);
+        } finally {
+            punto.collect();
+        }
+    }
+
+    private Slice<Compra> consultarHistorico(Long usuarioId, Pageable pageable) {
+        EtmPoint punto = ETM_MONITOR.createPoint("CompraService.findHistoricoCompras:consulta");
+        try {
+            return compraDao.findByUser_IdOrderByFechaRegistroCompraDesc(usuarioId, pageable);
+        } finally {
+            punto.collect();
+        }
     }
 
 
