@@ -60,6 +60,14 @@ class SesionUnitTest {
     }
 
     @Test
+    void getVersionDevuelveLaVersionAsignada() {
+        Sesion sesion = crearSesionFutura(10);
+        sesion.setVersion(7L);
+
+        assertEquals(7L, sesion.getVersion());
+    }
+
+    @Test
     void haComenzadoEnSesionPasadaEsCierto() {
         assertTrue(crearSesion(LocalDateTime.now().minusMinutes(1), 10).haComenzado());
     }
